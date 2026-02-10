@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Typewriter Link</title>
+
+<style>
+    body {
+        background: #0d0d0d;
+        color: white;
+        font-family: "Courier New", monospace;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #typewriter {
+        font-size: 28px;
+        border-right: 3px solid white;
+        padding-right: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    a {
+        color: #00ffff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+
+<body>
+
+<div id="typewriter"></div>
+
+<script>
+    const text = "email : colt.python1@hotmail.com<br>price start from 100,000$ to the first<br>buyer if its going to be yours®<br>Decoding QR codes with pen and paper :<br>you can add name , brand or message<br>in this example the qr code is the name : Colt Python";
+    const linkWord1 = "QR codes";
+    const linkURL1 = "https://moneypenny11.github.io/Qr-code/";
+    const linkWord2 ="this example";
+    const linkURL2 ="https://drive.google.com/file/d/1nL6s6JR69qBK0c8iLSlWDCpZg9xHuArw/view?usp=drivesdk";
+
+    let index = 0;
+    const speed = 80;
+    const el = document.getElementById("typewriter");
+
+    function typeWriter() {
+        if (index < text.length) {
+            let currentText = text.slice(0, index + 1);
+
+            if (currentText.includes(linkWord1)) {
+                currentText = currentText.replace(
+                    linkWord1,
+                    `<a href="${linkURL1}" target="_blank">${linkWord1}</a>`
+                );
+            }
+            
+            if (currentText.includes(linkWord2)) {
+                currentText = currentText.replace(
+                    linkWord2,
+                    `<a href="${linkURL2}" target="_blank">${linkWord2}</a>`
+                );
+            }
+
+            el.innerHTML = currentText;
+            index++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+
+    typeWriter();
+</script>
+
+</body>
+</html>
